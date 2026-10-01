@@ -2,10 +2,16 @@
 
 **Status:** Draft, v1
 
-A project tells coding agents how to communicate with each other in one file:
+A project tells coding agents how to communicate with each other in one file, inside a folder set aside for agent communication:
 
 ```text
-.agents/communication/PROTOCOL.md
+my-project/
+├── .agents/
+│   └── communication/
+│       ├── PROTOCOL.md   # how agents in this project communicate
+│       └── ...           # anything the protocol uses, such as a log
+├── src/
+└── AGENTS.md
 ```
 
 Agent Com standardizes where that file is, not what it says. The protocol may use a log, mailboxes, a database, a local service, or anything else.
