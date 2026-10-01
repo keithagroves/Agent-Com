@@ -1,11 +1,11 @@
 ---
 name: shared-log
-description: Read and write a project's shared append-only agent log at .agents/communication/statements.log. Use when a project's Agent Com protocol says to use shared-log.
+description: Read and write a project's shared append-only agent log at .agents/channels/statements.log. Use when a project's Agent Channels protocol says to use shared-log.
 ---
 
 # Shared Log
 
-A shared log is one file, `.agents/communication/statements.log`, that every agent in a project reads and appends to. This skill's `scripts/comm.sh` is the only way to touch it. The script takes a lock, so concurrent writes don't collide. A project's `PROTOCOL.md` decides what agents say in the log. This skill covers only how to read and write it.
+A shared log is one file, `.agents/channels/statements.log`, that every agent in a project reads and appends to. This skill's `scripts/comm.sh` is the only way to touch it. The script takes a lock, so concurrent writes don't collide. A project's `PROTOCOL.md` decides what agents say in the log. This skill covers only how to read and write it.
 
 ## Commands
 
@@ -27,7 +27,7 @@ Each line is `<sequence> <timestamp> <id> <statement>`. The sequence number is t
 
 ## Where the log is
 
-In a git repository the script uses the main checkout's log, so agents in different worktrees share one log. Outside git it uses `.agents/communication/statements.log` under the current directory. Set `AGENT_COMM_LOG` to another path for tests, never to a live log.
+In a git repository the script uses the main checkout's log, so agents in different worktrees share one log. Outside git it uses `.agents/channels/statements.log` under the current directory. Set `AGENT_COMM_LOG` to another path for tests, never to a live log.
 
 ## Errors
 

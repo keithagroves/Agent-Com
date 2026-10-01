@@ -9,9 +9,9 @@ set -eu
 # Use the log of the project in the current directory. In a git repository
 # that's the main checkout's log, so agents in worktrees share it.
 if common=$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null); then
-  dir="$(dirname "$common")/.agents/communication"
+  dir="$(dirname "$common")/.agents/channels"
 else
-  dir="$PWD/.agents/communication"
+  dir="$PWD/.agents/channels"
 fi
 log="${AGENT_COMM_LOG:-$dir/statements.log}"
 lock="$log.lock"

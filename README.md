@@ -1,20 +1,20 @@
-# Agent Com
+# Agent Channels
 
-**Agent Com is a simple, open convention for communication between coding agents.**
+**Agent Channels is a simple, open convention for communication between coding agents.**
 
 `PROTOCOL.md` is one predictable place to tell coding agents how to talk to each other in your project:
 
 ```text
 my-project/
 ├── .agents/
-│   └── communication/
+│   └── channels/
 │       ├── PROTOCOL.md   # how agents in this project communicate
 │       └── ...           # anything the protocol uses, such as a log
 ├── src/
 └── AGENTS.md
 ```
 
-That's it! Agent Com standardizes where that file is, not what it says. The protocol may use a log, mailboxes, a database, a local service, or anything else.
+That's it! Agent Channels standardizes where that file is, not what it says. The protocol may use a log, mailboxes, a database, a local service, or anything else.
 
 For an example, see [`examples/web-app`](examples/web-app).
 
@@ -26,19 +26,17 @@ Coding agents often work concurrently in the same project, and they run into eac
 - **Context in another session.** One agent knows something the others need: a decision the user made, a bug it found, a plan it agreed on. The user wants the agents to stay aligned, but each session sees only its own conversation, so the user has to repeat it in each one.
 - **Feedback.** The user wants one agent to review another's plan, diff or design. The user copies the work from one session into the other, then copies the feedback back.
 
-**Platform agnostic.** Many tools let agents talk to each other, but each in its own way, and often only with agents of the same tool. A project may have Claude Code in one terminal and Codex in another. Agent Com gives every project one place to say how its agents talk, and any agent that can read a file can find it.
+**Platform agnostic.** Many tools let agents talk to each other, but each in its own way, and often only with agents of the same tool. A project may have Claude Code in one terminal and Codex in another. Agent Channels gives every project one place to say how its agents talk, and any agent that can read a file can find it.
 
 ## The standard
 
-1. A project that defines an agent communication protocol puts it in `.agents/communication/PROTOCOL.md`. A user can also define a global protocol in `~/.agents/communication/PROTOCOL.md`, which applies to every project that doesn't define its own.
-2. When asked to communicate or coordinate with other agents, an agent reads the project's `PROTOCOL.md`, or the global one if the project has none, and follows it.
-3. That file is authoritative for agent communication in that project. Agents use only the mechanisms it describes and change shared state only in the ways it permits.
-
-A project's `PROTOCOL.md` replaces the global one entirely; agents don't combine them. The project's file is the one every agent working in the project sees, while a global file belongs to one user.
+1. A project that defines an agent communication protocol puts it in `.agents/channels/PROTOCOL.md`.
+2. When asked to communicate or coordinate with other agents, an agent reads that file and follows it.
+3. `PROTOCOL.md` is authoritative for agent communication in that project. Agents use only the mechanisms it describes and change shared state only in the ways it permits.
 
 Reading the file is triggered by the user's request. A harness may be configured to have agents read it automatically.
 
-If neither file exists, Agent Com says nothing about how agents communicate in that project. Its absence does not mean no other agents are running.
+If the file does not exist, Agent Channels says nothing about how agents communicate in that project. Its absence does not mean no other agents are running.
 
 ## File format
 
@@ -78,9 +76,9 @@ AGENTS.md holds instructions that every agent needs in every session. A communic
 
 A separate file also has a fixed path and a clear owner. A coordination tool can create, detect or replace `PROTOCOL.md` without editing a file people wrote by hand, and an agent doesn't have to search free-form instructions for the part about other agents. AGENTS.md files can be nested, with the nearest one applying in each directory, but agents working in different parts of a project still need one shared protocol.
 
-The two work together. AGENTS.md can point to the protocol, for example: `To coordinate with other agents, follow .agents/communication/PROTOCOL.md.` Agents that read AGENTS.md then know the protocol exists without loading it every session.
+The two work together. AGENTS.md can point to the protocol, for example: `To coordinate with other agents, follow .agents/channels/PROTOCOL.md.` Agents that read AGENTS.md then know the protocol exists without loading it every session.
 
-## Why a communication folder?
+## Why a dedicated folder?
 
 - **One place to look.** An agent asked to coordinate doesn't have to guess which tool a project uses. It checks one path.
 - **A home for shared state.** Logs, mailboxes, locks and databases live next to the protocol that owns them instead of scattered across the project.
@@ -88,4 +86,13 @@ The two work together. AGENTS.md can point to the protocol, for example: `To coo
 
 ## Not defined
 
-Agent Com does not define identity, message format, transport, locking, liveness, claims, where shared state lives, whether any of it is committed, or any runtime's API. Those belong to the protocol and the project.
+Agent Channels does not define identity, message format, transport, locking, liveness, claims, where shared state lives, whether any of it is committed, or any runtime's API. Those belong to the protocol and the project.
+
+## Open questions
+
+**A global protocol.** A user might keep a protocol in `~/.agents/channels/PROTOCOL.md`, but it isn't clear yet what it's for:
+
+- **A default.** It applies to any project that doesn't define its own, and a project's file replaces it entirely.
+- **Communication across projects.** Agents in different projects talk to each other, such as one in a web app and one in the API it calls. A project's own protocol might then sit alongside the global one rather than replace it.
+
+The two uses lead to different rules. Which file wins, or can an agent follow both? Where does global shared state live? And what happens when agents in the same project follow different users' global files?
