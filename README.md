@@ -22,9 +22,9 @@ For examples, see [`examples/web-app`](examples/web-app), where agents share a l
 
 Coding agents often work concurrently in the same project, and they run into each other. Without a way to talk, agents guess, or the user carries messages between them. Three typical cases:
 
-- **Changes in flight.** An agent finishes its work and goes to commit, but `git status` shows changes to `Navigation.tsx` and `Footer.tsx` that it didn't make. Another agent is probably mid-edit. The first agent can't ask whether those changes are finished, whether they belong in this commit, or whether it should wait.
 - **Context in another session.** One agent knows something the others need: a decision the user made, a bug it found, a plan it agreed on. The user wants the agents to stay aligned, but each session sees only its own conversation, so the user has to repeat it in each one.
 - **Feedback.** The user wants one agent to review another's plan, diff or design. The user copies the work from one session into the other, then copies the feedback back.
+- **Changes in flight.** An agent finishes its work and goes to commit, but `git status` shows changes to `Navigation.tsx` and `Footer.tsx` that it didn't make. Another agent is probably mid-edit. The first agent can't ask whether those changes are finished, whether they belong in this commit, or whether it should wait.
 
 **Platform agnostic.** Many tools let agents talk to each other, but each in its own way, and often only with agents of the same tool. A project may have Claude Code in one terminal and Codex in another. Agent Channels gives every project one place to say how its agents talk, and any agent that can read a file can find it.
 
@@ -63,6 +63,12 @@ The format is compatible with Agent Skills (`SKILL.md`), so a runtime that loads
 ## Trust
 
 Agents treat `PROTOCOL.md` like any other instructions found in a repository, including any commands it asks them to run.
+
+## Why not define the protocol?
+
+AGENTS.md doesn't define what goes in it either, and every major coding agent reads it. Agent communication is similar. Logs, mailboxes, A2A bridges and MCP servers already let agents talk, and each suits different projects. Defining one would make Agent Channels yet another of those tools. Leaving it open makes Agent Channels the place that points to whichever one a project uses. The [examples](examples) put two very different protocols behind the same path.
+
+The cost is that agents in different projects can't assume a common format. A recommended default, for projects with no preference, may come later.
 
 ## Why not a skill?
 
