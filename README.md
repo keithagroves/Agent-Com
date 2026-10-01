@@ -30,13 +30,15 @@ Coding agents often work concurrently in the same project, and they run into eac
 
 ## The standard
 
-1. A project that defines an agent communication protocol puts it in `.agents/communication/PROTOCOL.md`.
-2. When asked to communicate or coordinate with other agents, an agent reads that file and follows it.
-3. `PROTOCOL.md` is authoritative for agent communication in that project. Agents use only the mechanisms it describes and change shared state only in the ways it permits.
+1. A project that defines an agent communication protocol puts it in `.agents/communication/PROTOCOL.md`. A user can also define a global protocol in `~/.agents/communication/PROTOCOL.md`, which applies to every project that doesn't define its own.
+2. When asked to communicate or coordinate with other agents, an agent reads the project's `PROTOCOL.md`, or the global one if the project has none, and follows it.
+3. That file is authoritative for agent communication in that project. Agents use only the mechanisms it describes and change shared state only in the ways it permits.
+
+A project's `PROTOCOL.md` replaces the global one entirely; agents don't combine them. The project's file is the one every agent working in the project sees, while a global file belongs to one user.
 
 Reading the file is triggered by the user's request. A harness may be configured to have agents read it automatically.
 
-If the file does not exist, Agent Com says nothing about how agents communicate in that project. Its absence does not mean no other agents are running.
+If neither file exists, Agent Com says nothing about how agents communicate in that project. Its absence does not mean no other agents are running.
 
 ## File format
 
