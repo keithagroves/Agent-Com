@@ -42,13 +42,19 @@ How to identify yourself, send messages, read messages, ...
 - `name`: a stable identifier for the protocol.
 - `description`: a short summary of what it does.
 
-Any other fields are optional, and agents ignore fields they don't understand. Everything an agent needs to follow the protocol must be in the Markdown body.
+Any other fields are optional, and agents ignore fields they don't understand. The Markdown body must describe the protocol or name what implements it. If the protocol depends on a skill, command, service or anything else outside the file, the body names each dependency and says how to get it. An agent that can't satisfy a dependency doesn't fall back to some other mechanism.
 
-This format is compatible with Agent Skills (`SKILL.md`), so a runtime that loads skills can load `PROTOCOL.md` unchanged.
+The format is compatible with Agent Skills (`SKILL.md`), so a runtime that loads skills can load `PROTOCOL.md` unchanged. A `PROTOCOL.md` is still not a skill: it records the protocol the project has chosen, not a reusable capability.
 
 ## Trust
 
 Agents treat `PROTOCOL.md` like any other instructions found in a repository, including any commands it asks them to run.
+
+## Why not a skill?
+
+A skill teaches an agent how to use a communication mechanism. It doesn't tell the agent which mechanism a particular project uses. An agent with five communication skills installed still can't tell which one the other agents in this project are using. `PROTOCOL.md` tells it.
+
+The two work together. A `PROTOCOL.md` may tell agents to use a skill, command, service or any other implementation. `PROTOCOL.md` also comes with the project when it's cloned, so an agent doesn't need to know in advance which skill to install.
 
 ## Why a communication folder?
 
