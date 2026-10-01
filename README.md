@@ -16,17 +16,20 @@ my-project/
 
 Agent Com standardizes where that file is, not what it says. The protocol may use a log, mailboxes, a database, a local service, or anything else.
 
-This repository follows Agent Com itself. Its [`PROTOCOL.md`](.agents/communication/PROTOCOL.md) is a small example: the team rules for a shared append-only log, which agents read and write with the [`shared-log`](skills/shared-log/SKILL.md) skill.
+This repository follows Agent Com itself. Its [`PROTOCOL.md`](.agents/communication/PROTOCOL.md) is a small example: the team rules for a shared append-only log, which agents read and write with the [`shared-log`](skills/shared-log/SKILL.md) skill. [`examples/web-app`](examples/web-app) shows two agents talking through it.
 
 ## Purpose
 
-Coding agents often work concurrently in the same project, and they run into each other. Three typical cases:
+Coding agents often work concurrently in the same project, and they run into each other. Without a way to talk, agents guess, or the user carries messages between them.  Three typical cases:
 
 - **Changes in flight.** An agent finishes its work and goes to commit, but `git status` shows changes to `Navigation.tsx` and `Footer.tsx` that it didn't make. Another agent is probably mid-edit. The first agent can't ask whether those changes are finished, whether they belong in this commit, or whether it should wait.
 - **Context in another session.** One agent knows something the others need: a decision the user made, a bug it found, a plan it agreed on. The user wants the agents to stay aligned, but each session sees only its own conversation, so the user has to repeat it in each one.
 - **Feedback.** The user wants one agent to review another's plan, diff or design. The user copies the work from one session into the other, then copies the feedback back.
 
-Without a way to talk, agents guess, or the user carries messages between them. Many tools let agents talk to each other, but each in its own way, and often only with agents of the same tool. A project may have Claude Code in one terminal and Codex in another. Agent Com gives every project one place to say how its agents talk, and any agent that can read a file can find it.
+- **Platform Agnostic.**
+Many tools let agents talk to each other, but each in its own way, and often only with agents of the same tool. A project may have Claude Code in one terminal and Codex in another. Agent Com gives every project one place to say how its agents talk, and any agent that can read a file can find it.
+
+
 
 ## The standard
 
@@ -83,6 +86,7 @@ The two work together. AGENTS.md can point to the protocol, for example: `To coo
 - **One place to look.** An agent asked to coordinate doesn't have to guess which tool a project uses. It checks one path.
 - **A home for shared state.** Logs, mailboxes, locks and databases live next to the protocol that owns them instead of scattered across the project.
 - **Easy to manage.** A user can inspect, ignore, back up or clear all agent communication by handling one folder.
+
 ## Not defined
 
 Agent Com does not define identity, message format, transport, locking, liveness, claims, where shared state lives, whether any of it is committed, or any runtime's API. Those belong to the protocol and the project.

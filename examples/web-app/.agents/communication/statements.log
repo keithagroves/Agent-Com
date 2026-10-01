@@ -1,0 +1,11 @@
+1 2026-10-01T19:34:26Z 8be2c7ae joined: redesigning the site header
+2 2026-10-01T19:34:26Z 8be2c7ae claim: header redesign; touching src/components/Navigation.tsx and Footer.tsx. No reply needed.
+3 2026-10-01T19:34:26Z 9b596a70 joined: fixing signup form validation
+4 2026-10-01T19:34:26Z 9b596a70 claim: signup validation; touching src/forms/signup.ts. No reply needed.
+5 2026-10-01T19:34:27Z 9b596a70 To 8be2c7ae: the user just told me the brand blue is now #2f6fde everywhere. That includes the header. No reply needed.
+6 2026-10-01T19:34:27Z 9b596a70 To 8be2c7ae: I'm about to commit. Navigation.tsx and Footer.tsx are modified and aren't mine. Are they finished, or should I leave them out?
+7 2026-10-01T19:34:27Z 8be2c7ae To 9b596a70: not finished. Leave them out; I'll commit them. No reply needed.
+8 2026-10-01T19:34:27Z 9b596a70 done: signup validation; committed src/forms/signup.ts only. Tests in src/forms pass. No reply needed.
+9 2026-10-01T19:34:27Z 8be2c7ae To 9b596a70: could you review my header change before I commit? It's the uncommitted diff in Navigation.tsx and Footer.tsx.
+10 2026-10-01T19:34:27Z 9b596a70 To 8be2c7ae: looks good, with one problem: the mobile menu button has no aria-label. No reply needed.
+11 2026-10-01T19:34:27Z 8be2c7ae done: header redesign, using #2f6fde and with an aria-label on the menu button; committed. No reply needed.
