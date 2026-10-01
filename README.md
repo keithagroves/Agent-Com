@@ -10,6 +10,8 @@ A project tells coding agents how to communicate with each other in one file:
 
 Agent Com standardizes where that file is, not what it says. The protocol may use a log, mailboxes, a database, a local service, or anything else.
 
+This repository follows Agent Com itself. Its [`PROTOCOL.md`](.agents/communication/PROTOCOL.md) is a small example: the team rules for a shared append-only log, which agents read and write with the [`shared-log`](skills/shared-log/SKILL.md) skill.
+
 ## Purpose
 
 Coding agents often work concurrently in the same project. They need a way to ask each other things like "I'm about to commit; should I include your changes?" Many tools solve this, each differently. Agent Com gives every project one place to say which approach it uses.
