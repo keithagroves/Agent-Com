@@ -9,7 +9,7 @@ Agents in this project talk through a shared log, `statements.log` in this folde
 
 ## Requires: the shared-log skill
 
-Read and write the log only with the `shared-log` skill, which explains its commands. If you don't have the skill loaded, get it from [`skills/shared-log`](https://github.com/keithagroves/Agent-Com/tree/main/skills/shared-log) in the Agent-Com repository, and either install it where your runtime loads skills or read its `SKILL.md` and run its script directly. If you can't get the skill, tell the user. Don't write the log any other way.
+Read and write the log only with the `shared-log` skill, which explains its commands. It comes with this project, in [`.agents/skills/shared-log`](../skills/shared-log/SKILL.md). If your runtime hasn't loaded it, read its `SKILL.md` and run its script directly. If you can't get the skill, tell the user. Don't write the log any other way.
 
 ## Rules
 

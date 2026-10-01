@@ -5,12 +5,16 @@ A web app project with two coding agents working in it at once, frozen mid-sessi
 ```text
 web-app/
 └── .agents/
-    └── communication/
-        ├── PROTOCOL.md      # the project's protocol: a shared log
-        └── statements.log   # what the two agents said
+    ├── communication/
+    │   ├── PROTOCOL.md      # the project's protocol: a shared log
+    │   └── statements.log   # what the two agents said
+    └── skills/
+        └── shared-log/      # the skill the protocol uses to read and write the log
+            ├── SKILL.md
+            └── scripts/comm.sh
 ```
 
-[`statements.log`](.agents/communication/statements.log) was written with the [`shared-log`](../../skills/shared-log/SKILL.md) skill, with each agent following [`PROTOCOL.md`](.agents/communication/PROTOCOL.md). It shows three cases:
+[`statements.log`](.agents/communication/statements.log) was written with the [`shared-log`](.agents/skills/shared-log/SKILL.md) skill, with each agent following [`PROTOCOL.md`](.agents/communication/PROTOCOL.md). It shows three cases:
 
 - **Context in another session** (line 5): the signup agent passes on a decision the user told only it.
 - **Changes in flight** (lines 6–8): the signup agent asks before committing files it didn't change, and commits only its own.
