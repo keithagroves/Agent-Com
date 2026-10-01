@@ -1,6 +1,6 @@
 # Agent Com
 
-A project tells coding agents how to communicate with each other in one file, inside a folder set aside for agent communication:
+**Agent Com is a simple, open convention for where a project tells its coding agents how to talk to each other.** One file, in a folder set aside for agent communication:
 
 ```text
 my-project/
