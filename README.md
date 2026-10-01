@@ -14,7 +14,7 @@ my-project/
 
 That's it! Agent Com standardizes where that file is, not what it says. The protocol may use a log, mailboxes, a database, a local service, or anything else.
 
-This repository follows Agent Com itself. Its [`PROTOCOL.md`](.agents/communication/PROTOCOL.md) is a small example: the team rules for a shared append-only log, which agents read and write with the [`shared-log`](skills/shared-log/SKILL.md) skill. [`examples/web-app`](examples/web-app) shows two agents talking through it.
+For an example, see [`examples/web-app`](examples/web-app).
 
 ## Purpose
 
