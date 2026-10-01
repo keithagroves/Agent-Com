@@ -14,7 +14,7 @@ This repository follows Agent Com itself. Its [`PROTOCOL.md`](.agents/communicat
 
 ## Purpose
 
-Coding agents often work concurrently in the same project. They need a way to ask each other things like "I'm about to commit; should I include your changes?" Many tools solve this, each differently. Agent Com gives every project one place to say which approach it uses.
+Coding agents often work concurrently in the same project, and they run into each other. A typical case: an agent finishes its work and goes to commit, but `git status` shows changes to `Navigation.tsx` and `Footer.tsx` that it didn't make. Another agent is probably mid-edit. The first agent can't ask whether those changes are finished, whether they belong in this commit, or whether it should wait. It can only guess, or stop and ask the user. Many tools let agents ask each other, each in its own way. Agent Com gives every project one place to say which one it uses.
 
 ## The standard
 
@@ -58,13 +58,19 @@ A skill teaches an agent how to use a communication mechanism. It doesn't tell t
 
 The two work together. A `PROTOCOL.md` may tell agents to use a skill, command, service or any other implementation. `PROTOCOL.md` also comes with the project when it's cloned, so an agent doesn't need to know in advance which skill to install.
 
+## Why not AGENTS.md?
+
+AGENTS.md holds instructions that every agent needs in every session. A communication protocol is needed only when agents coordinate, and it can be long. Putting it in AGENTS.md would load it into every session's context.
+
+A separate file also has a fixed path and a clear owner. A coordination tool can create, detect or replace `PROTOCOL.md` without editing a file people wrote by hand, and an agent doesn't have to search free-form instructions for the part about other agents. AGENTS.md files can be nested, with the nearest one applying in each directory, but agents working in different parts of a project still need one shared protocol.
+
+The two work together. AGENTS.md can point to the protocol, for example: `To coordinate with other agents, follow .agents/communication/PROTOCOL.md.` Agents that read AGENTS.md then know the protocol exists without loading it every session.
+
 ## Why a communication folder?
 
 - **One place to look.** An agent asked to coordinate doesn't have to guess which tool a project uses. It checks one path.
 - **A home for shared state.** Logs, mailboxes, locks and databases live next to the protocol that owns them instead of scattered across the project.
 - **Easy to manage.** A user can inspect, ignore, back up or clear all agent communication by handling one folder.
-- **Out of the way until needed.** Unlike a section in AGENTS.md, the protocol isn't loaded into every session's context, and tools can find it by path.
-
 ## Not defined
 
 Agent Com does not define identity, message format, transport, locking, liveness, claims, where shared state lives, whether any of it is committed, or any runtime's API. Those belong to the protocol and the project.
