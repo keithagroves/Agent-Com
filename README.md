@@ -16,7 +16,7 @@ my-project/
 
 That's it! Agent Channels standardizes where that file is, not what it says. The protocol may use a log, mailboxes, a database, a local service, or anything else.
 
-For an example, see [`examples/web-app`](examples/web-app).
+For examples, see [`examples/web-app`](examples/web-app), where agents share a log, and [`examples/shop`](examples/shop), where they send each other [A2A](https://a2a-protocol.org/) messages.
 
 ## Purpose
 

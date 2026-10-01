@@ -1,0 +1,3 @@
+{"seq": 1, "received": "2026-10-01T21:55:44Z", "from": "web", "messageId": "9131cba1-6b13-4a0f-a71d-f615de8c9cb1", "text": "Yes, src/checkout/Summary.tsx does. Go ahead with the rename. I'll switch Summary.tsx to totalCents now and tell you when it's committed."}
+{"seq": 2, "received": "2026-10-01T21:55:44Z", "from": "web", "messageId": "3f2ee26e-f5cf-491b-b4ad-a5489655cf19", "text": "Switched and committed. Could you review Summary.tsx? It divides totalCents by 100 and formats it with Intl.NumberFormat."}
+{"seq": 3, "received": "2026-10-01T21:55:44Z", "from": "web", "messageId": "61e7c7b0-773f-4fe0-bffd-76029c1b4f58", "text": "Fixed: the Pay button is hidden when totalCents is 0, and that's committed too. No reply needed."}

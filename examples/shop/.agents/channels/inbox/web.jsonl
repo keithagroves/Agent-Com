@@ -1,0 +1,2 @@
+{"seq": 1, "received": "2026-10-01T21:55:44Z", "from": "api", "messageId": "f45bb719-5e4e-4e2c-acdd-4f74336150c8", "text": "I'm about to rename total to totalCents in GET /orders/:id. It becomes an integer number of cents. Does checkout read total?"}
+{"seq": 2, "received": "2026-10-01T21:55:44Z", "from": "api", "messageId": "3df16034-8c3a-4b86-a045-c9b7e1b473af", "text": "Looks right, with one problem: a fully refunded order has totalCents of 0, and the Pay button still shows. Hide it when the total is 0. No reply needed."}
