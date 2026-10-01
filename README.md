@@ -14,7 +14,13 @@ This repository follows Agent Com itself. Its [`PROTOCOL.md`](.agents/communicat
 
 ## Purpose
 
-Coding agents often work concurrently in the same project, and they run into each other. A typical case: an agent finishes its work and goes to commit, but `git status` shows changes to `Navigation.tsx` and `Footer.tsx` that it didn't make. Another agent is probably mid-edit. The first agent can't ask whether those changes are finished, whether they belong in this commit, or whether it should wait. It can only guess, or stop and ask the user. Many tools let agents ask each other, each in its own way. Agent Com gives every project one place to say which one it uses.
+Coding agents often work concurrently in the same project, and they run into each other. Three typical cases:
+
+- **Changes in flight.** An agent finishes its work and goes to commit, but `git status` shows changes to `Navigation.tsx` and `Footer.tsx` that it didn't make. Another agent is probably mid-edit. The first agent can't ask whether those changes are finished, whether they belong in this commit, or whether it should wait.
+- **Context in another session.** One agent knows something the others need: a decision the user made, a bug it found, a plan it agreed on. The user wants the agents to stay aligned, but each session sees only its own conversation, so the user has to repeat it in each one.
+- **Feedback.** The user wants one agent to review another's plan, diff or design. The user copies the work from one session into the other, then copies the feedback back.
+
+Without a way to talk, agents guess, or the user carries messages between them. Many tools let agents talk to each other, but each in its own way, and often only with agents of the same tool. A project may have Claude Code in one terminal and Codex in another. Agent Com gives every project one place to say how its agents talk, and any agent that can read a file can find it.
 
 ## The standard
 
