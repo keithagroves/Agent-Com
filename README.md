@@ -18,6 +18,8 @@ That's it! Agent Channels standardizes where that file is, not what it says. The
 
 For examples, see [`examples/web-app`](examples/web-app), where agents share a log, and [`examples/shop`](examples/shop), where they send each other [A2A](https://a2a-protocol.org/) messages.
 
+To use a ready-made protocol instead of writing your own, [agent-file-communication](https://github.com/keithagroves/agent-file-communication) installs one into `.agents/channels/` with a single command: agents share an append-only log through two bash scripts, across Claude Code, Codex and any other agent that can run a shell.
+
 ## Purpose
 
 Coding agents often work concurrently in the same project, and they run into each other. Without a way to talk, agents guess, or the user carries messages between them. Three typical cases:
